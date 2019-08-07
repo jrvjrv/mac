@@ -7,6 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "list-local-packages": "npm ls --depth 0",
+    "list-global-packages": "npm ls -g --depth 0",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -19,6 +21,8 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@types/mermaid": "^8.0.2",
+    "mermaid": "^8.2.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
