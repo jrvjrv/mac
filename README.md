@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Summary
 
-This is a demo of using [a https://github.com/knsv/mermaid](mermaid) in Angular, and in particular capturing node click events. The page for this demo website has more description, and the code obviously has the best details.
+This is a demo of using [a mermaid](https://github.com/knsv/mermaid) in Angular, and in particular capturing node click events. The page for this demo website has more description, and the code obviously has the best details.
 
 NOTE! There are two defects in the versions of two packages, mermaid & @types/mermaid. Follow the directions on the demo web page to work around these defects. The defects are not with communicating between mermaid and Angular, but you need to work around them to get this demo to work.
 
