@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +6,21 @@ import { Component, NgZone } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mac';
-  count = 0;
+  title = 'Sending Mermaid Clicks to Angular Demo';
+  count: number = 0;
+  countB: number = 0;
 
-  constructor(zone: NgZone) {
-    window["testFunction"] = this.buildPublicCall(zone, this);
+
+  constructor() {
   }
 
-  public Increment(): void {
+  public increment( nodeId: string ): void {
+    if ( nodeId.toString() === "A") {
     this.count++;
-  }
-
-  private buildPublicCall(zone: NgZone, appComponent: AppComponent): any {
-    return function angularAppGlobalMethod() {
-      zone.run(() => { appComponent.Increment(); });
+    }
+    else {
+      this.countB++;
     }
   }
+
 }

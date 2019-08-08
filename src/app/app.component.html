@@ -3,21 +3,79 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <img width="300" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <p>mermaid graphs can be made interactive with
+    some simple markup. Clicking on the nodes causes
+    mermaid to call a global function. Below is the
+    mermaid markup which creates a flowchart with two
+    nodes, both of which call the same click handler function. The
+    syntax is just the keyword &quot;click&quot;
+    followed by the node ID, the name of the
+    function to call and a tooltip in quotes.</p>
 
-<p>Count = {{count}}</p>
+  <pre>
+    <code ngNonBindable>
+      &lt;div class="mermaid"&gt;
+        graph TB
+        A-->B
+        click A functionToCallIntoAngular "give it a try"
+        click B functionToCallIntoAngular "it's fun to click!"
+      &lt;/div&gt;
+    </code>
+  </pre>
 
-<app-mermaid-flow></app-mermaid-flow>
+  <p>Although you
+    could create the function using script tags in
+    the html, in this demo
+    the angular component creates the function
+    without html. Clicks on both nodes
+    call the same method (passing in the svg node id
+    as a parameter, which is how the count is incremented
+    for different nodes),
+    but you could have each node click call a
+    different function instead.</p>
+
+  <div class="d-flex align-items-center flex-column">
+    <div class="card border-3 border-dark" style="width:40rem">
+      <div class="card-body">
+        <h3 class="card-title text-center">Sample Mermaid Flowchart Linked to Angular</h3>
+        <div class="d-flex align-items-center flex-column">
+          <p>Count of clicks on A = {{count}}</p>
+          <p>Count of clicks on B = {{countB}}</p>
+          <app-mermaid-flow (nodeClicked)="increment($event);"></app-mermaid-flow>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>Important note! Hacked versions of libraries!</h2>
+  <p>This demo uses an altered version of
+    mermaid 2.8.3! mermaid 2.8.3 has a bug in it that
+    prevents it from hooking up events in a flow chart correctly. In both
+    <code>mermaid.js</code> and <code>mermaid.core.js</code>
+    you need to comment out the second call to <code>cb()</code>,
+    as shown below.</p>
+  <pre>
+    <code ngNonBindable>
+    if (typeof cb !== 'undefined') &#123;
+      cb(svgCode, _diagrams_flowchart_flowDb__WEBPACK_IMPORTED_MODULE_8__["default"].bindFunctions);
+      // comment this line out!
+      //cb(svgCode, _diagrams_gantt_ganttDb__WEBPACK_IMPORTED_MODULE_14__["default"].bindFunctions);
+    &#125;
+</code>
+</pre>
+  <p>I also altered <code>@types/mermaid/mermaidAPI.d.ts</code>.
+    Add <code>securityLevel</code> to <code>interface Config</code></p>
+  <pre>
+    <code ngNonBindable>
+      interface Config &#123;
+        securityLevel: string;
+    </code>
+  </pre>
+  <p>At some point I expect both these issues will be fixed.
+    The demo code should work the same once the issues
+    are resolved.
+  </p>
+</div>
