@@ -50,32 +50,9 @@
       </div>
     </div>
   </div>
-  <h2>Important note! Hacked versions of libraries!</h2>
-  <p>This demo uses an altered version of
-    mermaid 2.8.3! mermaid 2.8.3 has a bug in it that
-    prevents it from hooking up events in a flow chart correctly. In both
-    <code>mermaid.js</code> and <code>mermaid.core.js</code>
-    you need to comment out the second call to <code>cb()</code>,
-    as shown below.</p>
-  <pre>
-    <code ngNonBindable>
-    if (typeof cb !== 'undefined') &#123;
-      cb(svgCode, _diagrams_flowchart_flowDb__WEBPACK_IMPORTED_MODULE_8__["default"].bindFunctions);
-      // comment this line out!
-      //cb(svgCode, _diagrams_gantt_ganttDb__WEBPACK_IMPORTED_MODULE_14__["default"].bindFunctions);
-    &#125;
-</code>
-</pre>
-  <p>I also altered <code>@types/mermaid/mermaidAPI.d.ts</code>.
-    Add <code>securityLevel</code> to <code>interface Config</code></p>
-  <pre>
-    <code ngNonBindable>
-      interface Config &#123;
-        securityLevel: string;
-    </code>
-  </pre>
-  <p>At some point I expect both these issues will be fixed.
-    The demo code should work the same once the issues
-    are resolved.
+  <h2>Older versions of libraries won't work.</h2>
+  <p>This demo uses mermaid 8.2.5. Previous versions, in particular mermaid 8.2.3, had a bug and could not hook
+    up events.
   </p>
+  <p>This demo also uses @types/mermaid 8.2.0. Again previous versions are missing type information added in mermaid 8.2.</p>
 </div>
