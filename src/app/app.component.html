@@ -20,7 +20,7 @@
     <code ngNonBindable>
       &lt;div class="mermaid"&gt;
         graph TB
-        A-->B
+        A-->B[B: This{{ '<' }}br>is{{ '<'}}br>filled{{'<'}}br>with{{'<'}}br>br-s]
         click A functionToCallIntoAngular "give it a try"
         click B functionToCallIntoAngular "it's fun to click!"
       &lt;/div&gt;
@@ -50,6 +50,9 @@
       </div>
     </div>
   </div>
+  <h2>Other workarounds</h2>
+  <p>In the source you see that instead of putting in &lt;br&gt;, I have put in <span ngNonBindable>&#123;&#123;&apos;&lt;&apos;&#125;&#125;br</span>&gt;. 
+    If you put in the correct raw html, angular finds and changes it. mermaid doesn&apos;t recognize the changed version.</p>
   <h2>Older versions of libraries won't work.</h2>
   <p>This demo uses mermaid 8.2.5. Previous versions, in particular mermaid 8.2.3, had a bug and could not hook
     up events.
